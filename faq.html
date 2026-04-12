@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — SnapPray</title>
+  <meta name="description" content="Frequently asked questions about SnapPray — the Christian prayer app that turns photos into prayers.">
+  <meta property="og:title" content="FAQ — SnapPray">
+  <meta property="og:description" content="Everything you need to know about SnapPray, free vs premium, and how AI prayer works.">
+  <meta property="og:url" content="https://snappray.com/faq">
+  <meta property="og:image" content="https://snappray.com/icon.png">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-deep: #0a0620;
+      --gold: #FBBF24;
+      --gold-dim: rgba(251,191,36,0.12);
+      --gold-border: rgba(251,191,36,0.35);
+      --white: #ffffff;
+      --white-10: rgba(255,255,255,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--purple-deep);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 60px;
+      background: rgba(10,6,32,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--white-10);
+    }
+    .nav-logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 22px;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-download {
+      background: var(--gold) !important;
+      color: #0a0620 !important;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+    }
+
+    /* HERO */
+    .faq-hero {
+      text-align: center;
+      padding: 80px 24px 48px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .faq-hero h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .faq-hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* CONTENT */
+    .faq-content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    /* SECTION */
+    .faq-section {
+      margin-bottom: 56px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--white-10);
+    }
+
+    /* FAQ ITEM */
+    .faq-item {
+      border-bottom: 1px solid var(--white-10);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+      padding: 20px 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-question.active { color: var(--gold); }
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+      transition: all 0.3s;
+      color: rgba(255,255,255,0.5);
+    }
+    .faq-question.active .faq-icon {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-answer.open {
+      max-height: 600px;
+    }
+    .faq-answer-inner {
+      padding: 0 0 20px;
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .faq-answer-inner p + p { margin-top: 12px; }
+    .faq-answer-inner ul {
+      margin: 12px 0 0 20px;
+    }
+    .faq-answer-inner li {
+      margin-bottom: 6px;
+      color: rgba(255,255,255,0.65);
+    }
+    .faq-answer-inner strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .faq-answer-inner .gold { color: var(--gold); }
+
+    /* PREMIUM CALLOUT */
+    .premium-callout {
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 40px 0;
+      text-align: center;
+    }
+    .premium-callout h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .premium-callout p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      margin: 0 auto 20px;
+    }
+    .premium-callout a {
+      display: inline-block;
+      background: var(--gold);
+      color: #0a0620;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .premium-callout a:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      border-top: 1px solid var(--white-10);
+    }
+    .footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer a:hover { color: var(--gold); }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-download { display: none; }
+      .faq-hero { padding: 56px 16px 32px; }
+      .faq-content { padding: 0 16px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">SnapPray</a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="#" class="nav-download">Download Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="faq-hero">
+  <p class="hero-eyebrow">Help & Support</p>
+  <h1>Frequently Asked Questions</h1>
+  <p>Everything you need to know about SnapPray, how it works, and what makes it different.</p>
+</div>
+
+<!-- CONTENT -->
+<div class="faq-content">
+
+  <!-- ABOUT -->
+  <div class="faq-section">
+    <p class="section-label">About SnapPray</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is SnapPray?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>SnapPray is a Christian prayer app that helps you pray more — through photos, feelings, scripture, and life milestones. Snap a photo and receive a prayer inspired by what you see. Choose a mood, a topic, or a moment, and begin praying in seconds.</p>
+          <p>SnapPray won't pray for you. It can't. But it can help you find a prayer in every moment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        Is SnapPray a Christian app?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Yes. SnapPray is built on Christian belief — that prayer is a conversation with God, that every moment is worth bringing before Him, and that faith was never meant to be private. Every prayer is grounded in Christian theology and scripture.</p>
+          <p>SnapPray is non-denominational and welcoming to all Christians, regardless of background or tradition.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        Is my data private? Do you sell my information?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>No. We do not sell your data. Ever.</strong></p>
+          <p>SnapPray does not require an account. We use an anonymous device ID to track prayer counts and streaks — never tied to your name, email, or Apple ID. Your prayers are stored locally on your device and are never shared or sold.</p>
+          <p>We track aggregate prayer counts (how many prayers have been prayed globally) to power the community features in Prayer Pulse. No personal information is involved.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        Are there ads in SnapPray?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>No ads. Ever.</strong> SnapPray is funded by Premium subscriptions — not advertising. We believe a prayer app should be a sanctuary, not a storefront.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="faq-section">
+    <p class="section-label">How It Works</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        How does Snap to Pray work?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Tap the <strong>Snap to Pray</strong> button and take a photo — or choose one from your library. SnapPray analyzes your photo using computer vision technology to understand what's in the scene.</p>
+          <p><strong>Free users</strong> receive a curated prayer from our library, matched to the type of scene in your photo — a sunset, a family gathering, a meal, a hospital room, and more.</p>
+          <p><strong>Premium users</strong> receive a freshly generated AI prayer, written in real time based on exactly what's in your photo — and optionally, personal context you add.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is the prayer library?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>The SnapPray prayer library contains thousands of hand-crafted prayers written and reviewed by our team. They cover feelings, prayer topics, life milestones, scripture, and photo moments — in pastoral and modern styles.</p>
+          <p>Library prayers are served instantly, work offline, and are available to all users at no cost. Every prayer in the library is theologically reviewed and written to be universal — designed to work for anyone in that moment, regardless of their specific circumstances.</p>
+          <p>SnapPray's prayer rotation system ensures you see different prayers before any repeat.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is an AI prayer and how is it generated?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Premium AI prayers are generated in real time by advanced AI. When you tap Begin My Prayer, SnapPray generates a freshly written prayer — unique to you, in that moment.</p>
+          <p>AI prayers can be personalized with your context — names, situations, specific requests. They feel different from library prayers because they're written specifically for what you shared.</p>
+          <p>Every AI prayer follows strict theological guidelines — grounded in Christian faith, never contradicting scripture, always oriented toward God's character and promises.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is the difference between a library prayer and an AI prayer?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>Library prayers</strong> are pre-written, instant, and universal. They're carefully crafted to work for anyone in a given moment — no personal details, no context needed. Available free.</p>
+          <p><strong>AI prayers</strong> are generated fresh every time, specific to exactly what you share — your photo, your words, the names of people you're praying for. They feel personal because they are. Available on Premium.</p>
+          <p>Both are theologically sound. The difference is personalization and specificity.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        Can I save my prayers?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Yes. Every prayer you pray is saved in <strong>My Prayers</strong>. Free users can access their last 30 days of prayers. Premium users have unlimited prayer history.</p>
+          <p>You can also share any prayer as a beautifully designed image card — with your photo (for Snap prayers) or a classic dark card — directly from the prayer screen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        How does the Daily Verse work?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Every day, SnapPray surfaces a different Bible verse from our library of over 500 verses — covering all 66 books of the Bible. The Daily Verse appears at the top of your Prayer Pulse carousel each morning.</p>
+          <p>You can <strong>Share</strong> the verse as a beautifully designed card, or tap <strong>Pray</strong> to write a prayer rooted in that scripture (Premium).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FREE VS PREMIUM -->
+  <div class="faq-section">
+    <p class="section-label">Free vs Premium</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What do I get for free?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>The free tier of SnapPray is genuinely useful — not a crippled demo:</p>
+          <ul>
+            <li>Snap to Pray — library prayers matched to your photo</li>
+            <li>I'm Feeling... — library prayers for 9 emotional states</li>
+            <li>Pray About... — library prayers for 9 prayer topics</li>
+            <li>Lord's Prayer guided prayer</li>
+            <li>Daily Verse — read and share</li>
+            <li>Prayer history (last 30 days)</li>
+            <li>Streak tracking and Prayer Challenges</li>
+            <li>My Prayers library</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What does Premium add?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Premium unlocks personalized AI prayers across every prayer type:</p>
+          <ul>
+            <li>Snap to Pray — add context, receive a prayer written for your exact photo</li>
+            <li>I'm Feeling... and Pray About... — add names, details, specific situations</li>
+            <li>Pray for Others — AI prayers for people you love</li>
+            <li>Pray Scripture — AI prayers rooted in any verse from our library</li>
+            <li>Pray Milestones — AI prayers for life's biggest moments</li>
+            <li>All Guided Prayer models (P.R.A.Y., ACTS, The Examen, and more)</li>
+            <li>Poetic and Raw prayer styles</li>
+            <li>Listen — hear your prayer read aloud in a natural neural voice</li>
+            <li>Unlimited prayer history</li>
+            <li>Daily Verse → Pray (scripture-rooted AI prayer)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        Why does Premium cost money?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Every AI prayer in SnapPray is generated in real time by one of the world's most advanced AI models. <strong>Every premium prayer costs us money to generate.</strong> We don't run ads, we don't sell your data, and we never will.</p>
+          <p>Premium pricing covers the real cost of delivering personalized, AI-generated prayers — and keeps the free experience genuinely free for everyone. When you subscribe to Premium, you're also making it possible for others to access SnapPray at no cost.</p>
+          <p>We believe that's worth it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        How much does Premium cost?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>$5.99/month</strong> or <strong>$49.99/year</strong> (save 30%).</p>
+          <p>Both plans include a <strong>7-day free trial</strong> — no charge until the trial ends. Cancel anytime.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        How do I cancel my subscription?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>SnapPray subscriptions are managed through Apple. To cancel:</p>
+          <ul>
+            <li>Open <strong>Settings</strong> on your iPhone</li>
+            <li>Tap your name → <strong>Subscriptions</strong></li>
+            <li>Find SnapPray and tap <strong>Cancel Subscription</strong></li>
+          </ul>
+          <p>You'll retain Premium access until the end of your current billing period.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        How do I restore my purchase?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>If you've reinstalled SnapPray or switched devices, open <strong>Settings</strong> inside the app and tap <strong>Restore Purchases</strong>. Make sure you're signed in to the same Apple ID used for your original purchase.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREMIUM CALLOUT -->
+  <div class="premium-callout">
+    <h3>Try Premium Free for 7 Days</h3>
+    <p>Personalized AI prayers for every moment. No ads. No data selling. Cancel anytime.</p>
+    <a href="#">Download SnapPray</a>
+  </div>
+
+  <!-- PRAYER TYPES -->
+  <div class="faq-section">
+    <p class="section-label">Prayer Types</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is Snap to Pray?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Snap to Pray is SnapPray's signature feature. Take a photo — or choose one from your library — and receive a prayer inspired by what's in the scene. A sunset becomes a prayer of gratitude. A hospital room becomes a prayer for healing. A family gathering becomes a prayer for those you love.</p>
+          <p>Every photo becomes a prayer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is I'm Feeling...?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Choose how you're feeling — anxious, grateful, lonely, joyful, angry, confused, and more — and receive a prayer that meets you there. Free users receive library prayers. Premium users can add personal context for a prayer written specifically for their situation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is Pray About...?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Choose a prayer topic — healing, guidance, relationships, finances, work, faith, grief, family, or repentance — and receive a prayer focused on that territory. Premium users can personalize with specific details.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is Pray for Others?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Pray for the people and communities in your life — your family, friends, spouse, church, school, country, and the world. Premium users can add names and specific situations for deeply personal intercession prayers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is Pray Scripture?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Search our Bible verse library — covering all 66 books — and receive an AI prayer rooted in that specific scripture. Pray the Word back to God. Premium feature.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is Pray Milestones?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Pray over life's most meaningful moments — birthdays, weddings, anniversaries, engagements, graduations, new babies, new jobs, retirement, and recovery. Add names and details for a prayer that captures the specific moment. Premium feature.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What is Guided Prayer?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Guided Prayer walks you through structured prayer models step by step — the Lord's Prayer (free), P.R.A.Y., ACTS, The Examen, BLESS, and Breath Prayer (Premium). Each model guides you through different dimensions of prayer with prompts and scripture.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOICE -->
+  <div class="faq-section">
+    <p class="section-label">The Voice Feature</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        What voice reads my prayers?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>SnapPray uses advanced neural voice technology to read your prayers aloud. Natural, warm, and on-device — no internet required once set up. Premium feature.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        How do I get the best voice experience? How do I download Zoe?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>For the best experience, download the Zoe neural voice:</p>
+          <ul>
+            <li>Open <strong>Settings</strong> on your iPhone</li>
+            <li>Go to <strong>Accessibility → Spoken Content → Voices</strong></li>
+            <li>Tap <strong>English</strong></li>
+            <li>Find <strong>Zoe</strong> and tap the download icon</li>
+          </ul>
+          <p>Once downloaded, Zoe works completely offline and sounds remarkably natural. The download is approximately 200MB.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAITH & PRIVACY -->
+  <div class="faq-section">
+    <p class="section-label">Faith & Privacy</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        Is SnapPray affiliated with a denomination or church?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>No. SnapPray is non-denominational and independent. It is not affiliated with any church, denomination, ministry, or religious organization. SnapPray is built on the shared foundation of Christian faith — that prayer matters, God listens, and every moment is worth bringing before Him.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        Do you store my prayers? Who can see them?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Your prayers are stored locally on your device in My Prayers. They are private to you — no one else can see them, including us.</p>
+          <p>We log anonymous prayer counts (category and style, no prayer text) to power community features like Prayer Pulse. These logs are tied to an anonymous device ID, never to your identity.</p>
+          <p><strong>We never read your prayers. We never store prayer text on our servers.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL -->
+  <div class="faq-section">
+    <p class="section-label">Technical</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        My prayer didn't generate — what happened?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>AI prayer generation requires an internet connection. If your prayer didn't generate, check your connection and try again. If the issue persists, SnapPray will automatically fall back to a library prayer so you're never left without a prayer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggle(this)">
+        The app isn't working — what do I do?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Try closing and reopening the app. If the issue continues, delete and reinstall SnapPray from the App Store — your Premium subscription will be restored automatically when you sign in with the same Apple ID.</p>
+          <p>If you're still having trouble, contact us at <a href="mailto:support@snappray.com" style="color: var(--gold);">support@snappray.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><a href="/">snappray.com</a> &nbsp;·&nbsp; <a href="/faq">FAQ</a> &nbsp;·&nbsp; <a href="mailto:support@snappray.com">Support</a></p>
+  <p style="margin-top: 8px;">© 2026 SnapPray. Because faith was never meant to be private.</p>
+</div>
+
+<script>
+  function toggle(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-question.active').forEach(b => b.classList.remove('active'));
+    // Open clicked if it was closed
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('active');
+    }
+  }
+</script>
+
+</body>
+</html>
